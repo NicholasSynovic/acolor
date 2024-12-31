@@ -20,6 +20,6 @@ package:
 		--onefile \
 		--add-data ./acolor/_version:. \
 		--workpath ./pyinstaller \
-		--name src \
+		--name acolor \
 		--hidden-import acolor \
 		acolor/main.py
