@@ -1,6 +1,6 @@
 build:
 	git --no-pager tag | tail -n 1 | xargs -I % poetry version %
-	poetry version --short > src/_version
+	poetry version --short > acolor/_version
 	poetry build
 	pip install dist/*.tar.gz
 
@@ -18,8 +18,8 @@ create-dev:
 package:
 	pyinstaller --clean \
 		--onefile \
-		--add-data ./src/_version:. \
+		--add-data ./acolor/_version:. \
 		--workpath ./pyinstaller \
 		--name src \
-		--hidden-import src \
-		src/main.py
+		--hidden-import acolor \
+		acolor/main.py
