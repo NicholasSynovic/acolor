@@ -14,7 +14,7 @@ Using `pipx`:
 `pipx install git+https://github.com/NicholasSynovic/acolor`
 
 A binary is provided
-[per release](https://github.com/NicholasSynovic/acolor/releases/tag).
+[per release](https://github.com/NicholasSynovic/acolor/tags).
 
 ## How To Use
 
