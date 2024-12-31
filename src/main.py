@@ -1,3 +1,5 @@
+import click
+from colorist.constants.ansi import RESET_ALL
 from colorist.helper.generate import ansi_standard_color_sequence
 
 COLORS: dict[str, int] = {
@@ -12,7 +14,34 @@ COLORS: dict[str, int] = {
 }
 
 
-def main(color: str) -> int:
+@click.command()
+@click.option(
+    "-c",
+    "--color",
+    "color",
+    type=str,
+    nargs=1,
+    default=None,
+    required=False,
+    help="Color name to generate ANSI code",
+)
+@click.option(
+    "-r",
+    "--reset",
+    "reset",
+    is_flag=True,
+    default=False,
+    required=False,
+    help="Print ANSI reset code",
+)
+def main(reset: bool, color: str | None = None) -> int:
+    if reset:
+        print(repr(RESET_ALL))
+        return 0
+
+    if color is None:
+        return 0
+
     try:
         colorValue: int = COLORS[color.upper()]
     except KeyError:
@@ -22,7 +51,7 @@ def main(color: str) -> int:
     print(
         repr(
             ansi_standard_color_sequence(
-                selector=3,
+                selector=3,  # Selects the foreground
                 value=colorValue,
             )
         )
@@ -31,4 +60,4 @@ def main(color: str) -> int:
 
 
 if __name__ == "__main__":
-    main("red")
+    main()
